@@ -779,10 +779,6 @@ video {
   top: 100%;
 }
 
-.isolate {
-  isolation: isolate;
-}
-
 .z-50 {
   z-index: 50;
 }
