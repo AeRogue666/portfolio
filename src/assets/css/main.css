@@ -1,0 +1,128 @@
+@import './base.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+  scrollbar-width: none;
+}
+*,*::before,*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+body {
+  display: block;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: rgb(var(--color-text));
+  background: rgb(var(--color-background));
+  font-family: 'Roboto','Arial',sans-serif;
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+  background-color: rgb(var(--color-heading));
+  position: fixed;
+  z-index: 99;
+}
+main {
+  display: block;
+  width: auto;
+  height: 100%;
+  min-height: 700px;
+  overflow-y: visible;
+  position: relative;
+  top: 5.78rem;
+  scrollbar-width: none;
+}
+h1,h2,h3,button,a,label,legend {
+  font-family: 'Roboto', sans-serif;
+}
+p,li {
+  font-family: 'Roboto Mono', monospace;
+  color: rgb(var(--color-text));
+}
+a {
+  text-decoration: none;
+}
+ul,li {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+h1 {
+  color: rgb(var(--color-title));
+  font-size: x-large;
+  font-weight: 600;
+}
+h2 {
+  color: rgb(var(--color-subtitle));
+  font-size: larger;
+  font-weight: 600;
+}
+h3 {
+  color: rgb(var(--color-subtitle-2));
+  font-size: large;
+  font-weight: normal;
+}
+
+/* HEADER */
+/* MAIN */
+/* FOOTER */
+
+/* BUTTONS */
+button {
+  background-color: transparent;
+  border: 1px solid rgb(var(--color-btn-border));
+}
+.color-nav-link {
+  color: rgb(var(--color-nav-link));
+}
+.border-cyan {
+  border-color: rgb(var(--color-btn-border));
+}
+.bg-color {
+  background-color: rgb(var(--color-background));
+}
+.btn-border-color {
+  border-color: rgb(var(--color-btn-border));
+}
+.z-index-99 {
+  z-index: 99;
+}
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-text-link-hover);
+  }
+  button:hover {
+    color: var(--color-btn-hover); 
+  }
+}
+.no-margin {
+  margin: unset;
+}
+.blury {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+}
+.notblury {
+  background: transparent;
+  opacity: unset;
+}

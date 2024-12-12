@@ -1,0 +1,22 @@
+:root {
+    /* Default color */
+    --eerie-black: 24, 24, 24; /* #181818 */
+    --white: 255, 255, 255; /* #ffffff */
+    --midnight-green: #0c4b60;
+    --cerulean: #007ea7;
+    --blue-green: #189dcd;
+    --pacific-cyan: #2ca6d2ff;
+    /* Tags color */
+    --yellow: #ffc333;
+    --orange: #ff9505;
+    --redorange: #ff6533;
+    --skyblue: #3389ff;
+    --red: #ff4c30;
+    --green: #11d611;
+    --darkgreen: #00bd7e;
+    /* Default color Shades */
+    --eerie-black--shade-1: #1c1c1c;
+    --eerie-black--shade-2: #1a1a1a;
+    --white--shade-1: #f0f4f6;
+    --white--shade-2: #f7f7f7;
+}

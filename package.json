@@ -1,0 +1,36 @@
+{
+  "name": "projet",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "css": "npx tailwindcss -i ./src/assets/css/main.css -o ./src/assets/css/style.css --watch"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-brands-svg-icons": "^6.6.0",
+    "@fortawesome/free-regular-svg-icons": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "animejs": "^3.2.2",
+    "dayjs": "^1.11.13",
+    "vue": "^3.5.12",
+    "vue-router": "^4.4.5",
+    "vue3-carousel": "^0.3.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "@types/animejs": "^3.1.12",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "postcss-import": "^16.1.0",
+    "sass": "^1.81.0",
+    "sass-loader": "^16.0.3",
+    "tailwindcss": "^3.4.14",
+    "vite": "^5.4.9"
+  }
+}
