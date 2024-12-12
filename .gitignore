@@ -26,11 +26,3 @@ coverage
 *.sw?
 .env
 *.tsbuildinfo
-tailwind.config.js
-vite.config.js
-*.md
-postcss.config.js
-old_views
-*.xml
-*.sql
-.vscode
