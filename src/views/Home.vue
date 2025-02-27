@@ -1,236 +1,196 @@
 <script setup>
-import app from "@/App.vue";
-import AppArticlesList from "@/components/AppArticlesList.vue";
+import { onMounted, reactive, ref } from "vue";
+import { homePageContentList, aboutList } from "@/assets/js/ProjectArraysList";
+import { useSeoMeta } from "@unhead/vue";
 import HomeWorkplaceAnimation from "@/components/HomeWorkplaceAnimation.vue";
-import HomeCatAnimation from "@/components/HomeCatAnimation.vue";
-import { reactive, ref, onMounted } from "vue";
-import router from "@/router/router";
-import { worksList, projectsList, homePageContentList } from "@/assets/js/ProjectArraysList";
+import HomeAboutSection from "@/components/HomeAboutSection.vue";
+import HomeSkillsSection from "@/components/HomeSkillsSection.vue";
+import HomeContactSection from "@/components/HomeContactSection.vue";
 
-const { ApiURL, Language } = app.components;
+const props = defineProps({
+  ApiURL: String,
+  Language: String,
+  PortfolioTitle: String,
+  routerLink: Array,
+  themeColor: String,
+});
+
+const { Language, PortfolioTitle, routerLink } = props;
+
+let { ApiURL } = props;
+if (typeof ApiURL == 'undefined') {
+  ApiURL = import.meta.env.VITE_API_URL
+}
 console.log(ApiURL, Language);
-let homePageContent = reactive([]), newWorksList = reactive([]), newProjectsList = reactive([]);
-
-homePageContentList
-  .filter((content) => content.code == Language)
-  .map((content) => homePageContent.push(content));
-
-const filterArraysList = (array, final) => {
-  array
-    .filter((content) => content.code == Language)
-    .map((content) => content.data.map((value) => final.push(value)));
+const homePageContent = reactive([]), homeAboutSectionContent = reactive([]), languageCode = ref('');
+const filterArrayContent = (array, final) => {
+  array.filter(content => content.code == (languageCode.value || Language)).map(content => final.push(content))
 },
-  redirectToProjectsPage = (e) => {
-    router.push(`/projects/${e}`);
-  },
-  redirectToWorksPage = (e) => {
-    router.push(`/works/${e}`);
+  getLanguage = () => {
+    if (typeof Language == 'undefined' || Language.length == 0) languageCode.value = localStorage.getItem('languageCode');
   };
 
 onMounted(() => {
-  filterArraysList(worksList, newWorksList);
-  filterArraysList(projectsList, newProjectsList);
+  getLanguage();
+  filterArrayContent(homePageContentList, homePageContent);
+  filterArrayContent(aboutList, homeAboutSectionContent);
+});
+
+useSeoMeta({
+  title: `${routerLink[0].home} - ${PortfolioTitle}`,
+  description: 'Portfolio homepage',
 });
 </script>
 
 <template>
-  <section v-for="home of homePageContent" class="flex flex-col items-center">
-    <div id="hero" class="flex flex-col items-center w-full min-h-screen relative top-negate-24">
-      <div id="heroheader" class="flex items-center min-h-79vh">
-        <div class="w-full h-full min-h-96">
-          <home-workplace-animation />
-        </div>
-        <div class="flex flex-col items-start w-full">
-          <div class="flex flex-col items-start p-4">
-            <p class="text-xl">{{ home.introduction }}!</p>
-            <h1 class="text-5xl font-semibold my-4">
-              {{ home.title1 }}
-              <a class="text-blue-500 font-semibold" href="/projects">{{
-                home.making
-                }}</a>
-              {{ home.title2 }}
-              <a class="text-blue-500 font-semibold" href="https://github.com/AeRogue666" target="_blank">code</a>,
-            </h1>
-            <h2 class="text-2xl font-semibold">
-              {{ home.subtitle1 }}
-              <font-awesome-icon icon="fa-solid fa-heart" class="skyblue" :title="home.heart" />
-              {{ home.subtitle2 }}.
-            </h2>
-            <p class="my-2 text-xl">
-              <q cite="/about">{{ home.quote }}</q>
-            </p>
+  <section v-for="home of homePageContent" class="flex flex-col items-center w-full h-full">
+    <div id="hero-container" class="flex flex-col justify-center w-screen h-screen">
+      <div id="hero" class="flex flex-col items-center w-full h-auto">
+        <div id="heroheader" class="flex items-center w-auto h-auto relative">
+          <div class="flex justify-center items-center w-auto h-auto">
+            <home-workplace-animation />
           </div>
-          <div class="flex flex-row items-start w-auto h-auto">
-            <a src="https://www.slack.com/" title="Lien externe vers ma page Slack" target="_blank">
-              <div class="block text-center mx-2">
-                <font-awesome-icon icon="fa-brands fa-slack" class="fa-xl size-9"></font-awesome-icon>
+          <div class="flex flex-col items-start w-full">
+            <div class="flex flex-col items-start p-4">
+              <p class="text-xl">{{ home.introduction }}!</p>
+              <h1 class="text-5xl font-semibold my-4">
+                {{ home.title1 }}
+                <span :class="[props.themeColor == 'light' ? 'text-blue-600' : 'text-blue-500']"
+                  class="font-semibold">{{ home.making }}</span>
+                {{ home.title2 }}
+                <span :class="[props.themeColor == 'light' ? 'text-blue-600' : 'text-blue-500']" class="font-semibold"
+                  target="_blank">code</span>,
+              </h1>
+              <span class="text-2xl font-semibold">
+                {{ home.subtitle1 }}
+                <font-awesome-icon :title="home.heart" icon="fa-solid fa-heart"
+                  :class="[props.themeColor == 'light' ? 'text-blue-600' : 'text-blue-500']" />
+                {{ home.subtitle2 }}.</span>
+              <p class="my-2 text-xl quote">
+                <q cite="about">{{ home.quote }}</q>
+              </p>
+            </div>
+            <ul class="grid grid-cols-3 items-start w-auto h-auto">
+              <li v-for="link of home.sociallinks">
+                <a class="flex flex-col justify-center items-center w-full h-full" :href="link.url"
+                  :aria-label="link.title" target="_blank">
+                  <font-awesome-icon :icon="[link.type, link.icon]" class="fa-xl size-9"></font-awesome-icon>
+                  <p class="text-xl px-2">{{ link.content }}</p>
+                </a>
+              </li>
+            </ul>
+            <div id="homecontact" class="flex flex-col items-start w-auto h-auto p-4 relative">
+              <div class="flex flex-col items-start">
+                <div class="flex flex-col items-start">
+                  <a href="#contact" class="flex flex-row items-center w-auto h-full min-w-auto min-h-12">
+                    <font-awesome-icon icon="fa-solid fa-contact-card"
+                      :class="[props.themeColor == 'light' ? 'border-blue-600' : 'border-blue-500']"
+                      class="fa-xl size-6 border-solid border-2 p-2 rounded-xl"></font-awesome-icon>
+                    <span class="text-xl mx-6 color-nav-link">{{ home.contactme }}</span>
+                  </a>
+                  <a href="cv" class="flex flex-row items-center w-auto h-full min-w-auto min-h-12">
+                    <font-awesome-icon icon="fa-solid fa-person"
+                      :class="[props.themeColor == 'light' ? 'border-blue-600' : 'border-blue-500']"
+                      class="fa-xl size-6 border-solid border-2 p-2 rounded-xl"></font-awesome-icon>
+                    <span class="text-xl mx-6 color-nav-link">{{ home.about }}</span>
+                  </a>
+                </div>
+                <button v-for="cv of home.cv" id="dl-cv" name="dlcv" :href="cv.url"
+                  class="flex flex-row items-center w-auto h-full min-w-auto min-h-12 border-none" download>
+                  <font-awesome-icon icon="fa-solid fa-file-download"
+                    :class="[props.themeColor == 'light' ? 'border-blue-600' : 'border-blue-500']"
+                    class="fa-xl size-6 border-solid border-2 p-2 rounded-xl"></font-awesome-icon>
+                  <span class="text-xl mx-6 color-nav-link">{{ cv.title }}</span>
+                </button>
               </div>
-            </a>
-            <a src="https://www.linkedin.com/" title="Lien externe vers ma page LinkedIn" target="_blank">
-              <div class="block text-center mx-2">
-                <font-awesome-icon icon="fa-brands fa-linkedin" class="fa-xl size-9"></font-awesome-icon>
-              </div>
-            </a>
-            <a src="https://www.github.com/AeRogue666" title="Lien externe vers ma page Github" target="_blank">
-              <div class="block text-center mx-2">
-                <font-awesome-icon icon="fa-brands fa-github" class="fa-xl size-9"></font-awesome-icon>
-              </div>
-            </a>
+            </div>
           </div>
         </div>
-      </div>
-      <div id="homecontact" class="flex h-auto py-4">
-        <div class="flex flex-row items-center">
-          <a href="/contact" class="flex flex-row items-center w-auto min-w-auto min-h-12 p-3">
-            <font-awesome-icon icon="fa-solid fa-contact-card"
-              class="fa-xl size-6 border-solid border-2 p-2 btn-border-color rounded-xl"></font-awesome-icon>
-            <span class="text-xl mx-6 color-nav-link">{{
-              home.contactme
-              }}</span>
-          </a>
-          <a href="/a-propos" class="flex flex-row items-center w-auto min-w-auto min-h-12 p-3">
-            <font-awesome-icon icon="fa-solid fa-person"
-              class="fa-xl size-6 border-solid border-2 p-2 btn-border-color rounded-xl"></font-awesome-icon>
-            <span class="text-xl mx-6 color-nav-link">{{ home.about }}</span>
-          </a>
-        </div>
-        <button v-for="cv of home.cv" id="dl-cv" name="dlcv" :href="cv.url"
-          class="flex flex-row items-center w-auto min-w-auto min-h-12 p-3 border-none" download>
-          <font-awesome-icon icon="fa-solid fa-file-download"
-            class="fa-xl size-6 border-solid border-2 p-2 btn-border-color rounded-xl"></font-awesome-icon>
-          <span class="text-xl mx-6 color-nav-link">{{ cv.title }}</span>
-        </button>
-      </div>
-      <div id="projectsarrow" class="absolute">
-        <a href="#projects" title="Lien interne - Flèche permettant de descendre dans la page">
-          <font-awesome-icon icon="fa-solid fa-arrow-down"></font-awesome-icon>
-        </a>
-      </div>
-    </div>
-    <div id="projects" class="flex flex-col justify-center items-center w-full mb-4">
-      <div v-for="pro in home.pro" class="flex flex-col items-center w-full mt-28">
-        <div class="flex flex-row items-center w-full">
-          <h2 class="text-xl font-semibold mx-4">{{ pro.title }}</h2>
-          <a type="link" name="focusWorks" href="/works" :title="pro.titleText" class="border-none">
-            <font-awesome-icon icon="fa-solid fa-arrow-right" class="text-blue-500"></font-awesome-icon>
-          </a>
-        </div>
-        <div class="flex flex-row items-start w-full my-4 px-2">
-          <app-articles-list :project-content="newWorksList"
-            @handle-article-id="redirectToWorksPage"></app-articles-list>
-        </div>
-      </div>
-      <div class="flex flex-col items-center w-full">
-        <div v-for="perso in home.perso" class="flex flex-row items-center w-full mt-4">
-          <h2 class="text-xl font-semibold mx-4">{{ perso.title }}</h2>
-          <a type="link" name="focusProjects" href="/projects" :title="perso.titleText" class="border-none">
-            <font-awesome-icon icon="fa-solid fa-arrow-right" class="text-blue-500"></font-awesome-icon>
-          </a>
-        </div>
-        <div class="flex flex-row items-start w-full my-4 px-2">
-          <app-articles-list :project-content="newProjectsList"
-            @handle-article-id="redirectToProjectsPage"></app-articles-list>
+        <div id="projectsarrow" class="absolute">
+          <RouterLink to="/#aboutcontainer" title="Lien interne - Flèche permettant de descendre dans la page">
+            <font-awesome-icon icon="fa-solid fa-arrow-down"></font-awesome-icon>
+          </RouterLink>
         </div>
       </div>
     </div>
-    <div id="notenough" class="flex justify-center items-center w-full h-auto min-h-64">
-      <div class="flex flex-col justify-center items-center w-auto h-auto px-6">
-        <h2 class="text-2xl font-semibold">{{ home.notenoughtitle }}?</h2>
-        <p class="text-xl font-semibold">{{ home.notenoughcontent }}:</p>
-        <div id="notenoughlinks" class="flex flex-col items-center min-w-max">
-          <a href="/contact" class="flex flex-row items-center w-3/4 min-w-auto min-h-12 p-3">
-            <font-awesome-icon icon="fa-solid fa-contact-card"
-              class="fa-xl size-6 border-solid border-2 p-2 btn-border-color rounded-xl"></font-awesome-icon>
-            <span class="text-xl mx-6 color-nav-link">{{ home.contact }}</span>
-          </a>
-          <a href="/about" class="flex flex-row items-center w-3/4 min-w-auto min-h-12 p-3">
-            <font-awesome-icon icon="fa-solid fa-person"
-              class="fa-xl size-6 border-solid border-2 p-2 btn-border-color rounded-xl"></font-awesome-icon>
-            <span class="text-xl mx-6 color-nav-link">{{ home.about }}</span>
-          </a>
-          <a href="/faq" class="flex flex-row items-center w-3/4 min-w-auto min-h-12 p-3">
-            <font-awesome-icon icon="fa-solid fa-question"
-              class="fa-xl size-6 border-solid border-2 p-2 btn-border-color rounded-xl"></font-awesome-icon>
-            <span class="text-xl mx-6 color-nav-link">{{ home.faq }}</span>
-          </a>
-        </div>
-      </div>
-      <div id="catanimation" class="flex flex-col items-center min-w-max" alt="animation d'un chat qui dort">
-        <home-cat-animation />
-      </div>
-    </div>
+    <HomeAboutSection :about-content="homeAboutSectionContent"></HomeAboutSection>
+    <HomeSkillsSection :completed-projects-title="home.completedproject"
+      :preferred-languages-title="home.preferredlanguage" :preferred-technologies-title="home.preferredtechnos"
+      :theme-color="props.themeColor">
+    </HomeSkillsSection>
+    <HomeContactSection :content="home"></HomeContactSection>
   </section>
 </template>
 
-<style lang="scss">
+<style lang="css">
 #heroheader {
   flex-direction: column;
 }
 
-#homecontact {
-  flex-direction: column;
-  align-items: start;
-  width: auto;
-}
-
 #projectsarrow {
-  bottom: 10%;
+  padding: 0.576rem 1rem;
+  border: 1px solid;
+  border-radius: 10%;
+  top: 86.4vh;
+  right: 3vw;
 }
 
-#notenough {
-  flex-direction: column;
-  background-color: var(--color-bg-article);
-  min-height: 39vh;
+.max-h-150 {
+  max-height: 38rem;
 }
 
-#notenoughlinks {
-  width: 100%;
-}
-
-#catanimation {
-  width: auto;
-  min-height: 25.7rem;
-}
-
-.top-negate-24 {
-  top: 0;
+.max-h-162 {
+  max-height: 40.68rem;
 }
 
 .min-h-79vh {
   min-height: 70vh;
 }
 
-@media (min-width: 1000px) {
+.mb-5vh {
+  margin-bottom: 5vh;
+}
+
+.top-negate-24 {
+  top: 0;
+}
+
+.quote {
+  display: block;
+}
+
+@media (min-width: 74.6875rem) {
   #heroheader {
     flex-direction: row;
   }
 
-  #homecontact {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
   #projectsarrow {
-    top: 90%;
-    /* bottom: 7.3%; */
-  }
-
-  #notenough {
-    flex-direction: row;
-  }
-
-  #notenoughlinks {
-    width: 50%;
+    top: 75vh;
+    right: 2vw;
   }
 
   .top-negate-24 {
-    top: -5.78rem;
+    top: -3.7rem;
   }
 
   .min-h-79vh {
     min-height: 79vh;
+  }
+}
+
+@media (min-width: 62.4rem) and (max-width: 75rem) {
+  .quote {
+    display: none;
+  }
+}
+
+@media (min-width: 75rem) {
+  #projectsarrow {
+    top: 83.5vh;
+  }
+
+  .top-negate-24 {
+    top: -5.78rem;
   }
 }
 </style>

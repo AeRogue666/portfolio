@@ -1,6 +1,17 @@
 <script setup>
-    import app from '@/App.vue';
-    const { ApiURL, Language } = app.components;
+import { useSeoMeta } from '@unhead/vue';
+
+const props = defineProps({
+  Language: String,
+  PortfolioTitle: String,
+  routerLink: Array,
+});
+const { Language, PortfolioTitle, routerLink } = props;
+
+useSeoMeta({
+    title: `${routerLink[0].legalmentions} - ${PortfolioTitle}`,
+    description:'Legal mentions page',
+});
 </script>
 
 <template>
@@ -9,8 +20,10 @@
         <div class="flex flex-col items-start max-w-3-4 mt-4">
             <div class="flex flex-col items-start pb-4">
                 <h2>Mentions légales (Français)</h2>
-                <p>Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique,</p>
-                <p>il est précisé aux utilisateurs du site Aureldev l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.</p>
+                <p>Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie
+                    numérique,</p>
+                <p>il est précisé aux utilisateurs du site Aureldev l'identité des différents intervenants dans le cadre
+                    de sa réalisation et de son suivi.</p>
             </div>
             <div class="flex flex-col items-start pb-4">
                 <h2>Edition du site</h2>
@@ -25,7 +38,9 @@
                 <p><b>SIRET :</b>808 709 794 00016</p>
                 <p><b>SIREN :</b>808 709 794</p>
                 <p><b>Contact téléphonique ou email :</b> contact@github.com / Pas de support téléphonique</p>
-                <p>Plus d'informations sur <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/github-b-v-808709794">l'Annuaire des Entreprises</a> du Gouvernement Français</p>
+                <p>Plus d'informations sur <a
+                        href="https://annuaire-entreprises.data.gouv.fr/entreprise/github-b-v-808709794">l'Annuaire des
+                        Entreprises</a> du Gouvernement Français</p>
             </div>
             <div class="flex flex-col items-start pb-4">
                 <h2>Directeur de publication</h2>
@@ -38,18 +53,32 @@
             </div>
             <div class="flex flex-col items-start pb-4">
                 <h2>Données personnelles</h2>
-                <p>Le traitement de vos données à caractère personnel est régi par notre Charte du respect de la vie privée,</p>
+                <p>Le traitement de vos données à caractère personnel est régi par notre Charte du respect de la vie
+                    privée,</p>
                 <p>disponible depuis la section "Données Personnelles",</p>
-                <p>conformément au Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016 («RGPD»).</p>
+                <p>conformément au Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016 («RGPD»).
+                </p>
             </div>
             <div class="flex flex-col items-start pb-4">
                 <h2>Crédits</h2>
-                <p><a href="/">Homepage</a> - Stars sky - Copyright (c) 2024 by Sobhan Dash (https://codepen.io/sobhandash/pen/ExmOPEz)</p>
-                <p><a href="/about">About page</a> - Man's Face - Copyright (c) 2024 by Alvaro Montoro (https://codepen.io/alvaromontoro/pen/KKMWWLv)</p>
-                <p><a href="/404">Not found page</a> - Flames in the chimney - Copyright (c) 2024 by KESHAV KUNDAL (https://codepen.io/keshav929/pen/PpEVOv)</p>
-                <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-                <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-                <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+                <p><a href="/">Homepage</a> - Stars sky - Copyright (c) 2024 by Sobhan Dash
+                    (https://codepen.io/sobhandash/pen/ExmOPEz)</p>
+                <p><a href="/about">About page</a> - Man's Face - Copyright (c) 2024 by Alvaro Montoro
+                    (https://codepen.io/alvaromontoro/pen/KKMWWLv)</p>
+                <p><a href="/404">Not found page</a> - Flames in the chimney - Copyright (c) 2024 by KESHAV KUNDAL
+                    (https://codepen.io/keshav929/pen/PpEVOv)</p>
+                <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+                    associated documentation files (the "Software"), to deal in the Software without restriction,
+                    including without limitation the rights to use, copy, modify, merge, publish, distribute,
+                    sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+                    furnished to do so, subject to the following conditions:</p>
+                <p>The above copyright notice and this permission notice shall be included in all copies or substantial
+                    portions of the Software.</p>
+                <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+                    LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+                    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+                    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
             </div>
         </div>
     </article>
@@ -58,8 +87,10 @@
         <div class="flex flex-col items-start max-w-3-4 mt-4">
             <div class="flex flex-col items-start pb-4">
                 <h2>Terms & Conditions (English)</h2>
-                <p>In accordance with the provisions of Law No. 2004-575 of 21 June 2004 on confidence in the digital economy,</p>
-                <p>users of the Aureldev website are informed of the identity of the various parties involved in its creation and monitoring.</p>
+                <p>In accordance with the provisions of Law No. 2004-575 of 21 June 2004 on confidence in the digital
+                    economy,</p>
+                <p>users of the Aureldev website are informed of the identity of the various parties involved in its
+                    creation and monitoring.</p>
             </div>
             <div class="flex flex-col items-start pb-4">
                 <h2>Site editing</h2>
@@ -69,12 +100,14 @@
             <div class="flex flex-col items-start pb-4">
                 <h2>Hosting</h2>
                 <p>The Site is hosted by <b>GITHUB BV</b>, a subsidiary of <b>GITHUB</b></p>
-                <p><b>Registered Head office:</b>  GitHub BV Prins Bernhardplein 200, Amsterdam 1097JB Pays-Ba</p>
+                <p><b>Registered Head office:</b> GitHub BV Prins Bernhardplein 200, Amsterdam 1097JB Pays-Ba</p>
                 <p><b>Company name:</b> Société commerciale étrangère immatriculée au RCS</p>
                 <p><b>SIRET :</b>808 709 794 00016</p>
                 <p><b>SIREN :</b>808 709 794</p>
                 <p><b>Phone contact or email :</b> contact@github.com / No phone contact</p>
-                <p>More informations on <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/github-b-v-808709794">French Governement Business Directory</a> (in French only)</p>
+                <p>More informations on <a
+                        href="https://annuaire-entreprises.data.gouv.fr/entreprise/github-b-v-808709794">French
+                        Governement Business Directory</a> (in French only)</p>
             </div>
             <div class="flex flex-col items-start pb-4">
                 <h2>Publishing Director</h2>
@@ -87,29 +120,43 @@
             </div>
             <div class="flex flex-col items-start pb-4">
                 <h2>Personal Data</h2>
-                <p>The processing of your personal data is governed by our Privacy Policy, available in the 'Privacy Policy' section,</p>
+                <p>The processing of your personal data is governed by our Privacy Policy, available in the 'Privacy
+                    Policy' section,</p>
                 <p>in accordance with the General Data Protection Regulation 2016/679 of 27 April 2016 ('GDPR')</p>
             </div>
             <div class="flex flex-col items-start pb-4">
                 <h2>Crédits</h2>
-                <p><a href="/">Homepage</a> - Stars sky - Copyright (c) 2024 by Sobhan Dash (https://codepen.io/sobhandash/pen/ExmOPEz)</p>
-                <p><a href="/about">About page</a> - Man's Face - Copyright (c) 2024 by Alvaro Montoro (https://codepen.io/alvaromontoro/pen/KKMWWLv)</p>
-                <p><a href="/404">Not found page</a> - Flames in the chimney - Copyright (c) 2024 by KESHAV KUNDAL (https://codepen.io/keshav929/pen/PpEVOv)</p>
-                <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-                <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-                <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+                <p><a href="/">Homepage</a> - Stars sky - Copyright (c) 2024 by Sobhan Dash
+                    (https://codepen.io/sobhandash/pen/ExmOPEz)</p>
+                <p><a href="/about">About page</a> - Man's Face - Copyright (c) 2024 by Alvaro Montoro
+                    (https://codepen.io/alvaromontoro/pen/KKMWWLv)</p>
+                <p><a href="/404">Not found page</a> - Flames in the chimney - Copyright (c) 2024 by KESHAV KUNDAL
+                    (https://codepen.io/keshav929/pen/PpEVOv)</p>
+                <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+                    associated documentation files (the "Software"), to deal in the Software without restriction,
+                    including without limitation the rights to use, copy, modify, merge, publish, distribute,
+                    sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+                    furnished to do so, subject to the following conditions:</p>
+                <p>The above copyright notice and this permission notice shall be included in all copies or substantial
+                    portions of the Software.</p>
+                <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+                    LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+                    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+                    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
             </div>
         </div>
     </article>
 </template>
 
 <style>
+.max-w-3-4 {
+    max-width: 90%;
+}
+
+@media (min-width: 1000px) {
     .max-w-3-4 {
-        max-width: 90%;
+        max-width: 75%;
     }
-    @media (min-width: 1000px) {
-        .max-w-3-4 {
-            max-width: 75%;
-        }
-    }
+}
 </style>

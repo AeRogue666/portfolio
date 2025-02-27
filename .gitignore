@@ -26,3 +26,7 @@ coverage
 *.sw?
 .env
 *.tsbuildinfo
+special_repository
+old_views
+.vite-ssg-temp
+public/files/img/Project2

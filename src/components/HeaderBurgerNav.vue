@@ -1,26 +1,33 @@
 <script setup>
 import { computed } from 'vue';
 const props = defineProps({
-    isPhoneNavbarOpen: { type: Boolean },
-    navContent: { type: Array }
+    isPhoneNavbarOpen: Boolean,
+    navContent: Array,
+    Language: String,
 });
-const emits = defineEmits(['update:navContent']);
+const emits = defineEmits(['update:navContent', 'closingPhoneNavbar']);
 
 const navBarContent = computed({
     get() {
         return props.navContent
     },
     set() {
-        emits('update:navContent', props.navContent)
+        return emits('update:navContent', props.navContent)
     }
 });
 </script>
 
 <template>
     <aside
-        class="flex flex-col justify-start items-center w-9/12 min-h-screen border border-solid border-gray-200 absolute top-full left-0 z-index-99 navbar-container"
+        class="flex flex-col justify-start items-center w-9/12 min-h-full border border-solid border-gray-200 rounded-xl absolute top-full left-0 z-index-99 navbar-container"
         v-if="props.isPhoneNavbarOpen">
-        <nav v-for="(nav, i) of navBarContent" :key="i" class="flex flex-col w-full p-4 text-start z-index-99">
+        <nav v-for="(nav, i) of navBarContent" :key="i" class="flex flex-col w-full p-4 text-start z-index-99"
+            :aria-label="nav.navlinks">
+            <button @click="(e) => $emit('closingPhoneNavbar', e)"
+                class="block w-full h-auto border-none text-lg font-semibold" name="buttonclosephonenavbar" :aria-label="nav.closemenu">
+                <font-awesome-icon icon="fa-solid fa-xmark"></font-awesome-icon>
+                <span class="mx-2">{{ nav.closemenu }}</span>
+            </button>
             <RouterLink
                 class="flex flex-row items-center w-auto min-w-72 min-h-12 m-2 p-3 border-none color-nav-link text-xl font-semibold duration-500 navlink"
                 to="/">
@@ -55,13 +62,6 @@ const navBarContent = computed({
                 <font-awesome-icon icon="fa-solid fa-person"
                     class="fa-xl size-6 border-2 border-solid p-2 btn-border-color rounded-xl" />
                 <span class="text-xl mx-6 color-nav-link">{{ nav.about }}</span>
-            </RouterLink>
-            <RouterLink
-                class="flex flex-row items-center w-auto min-w-72 min-h-12 m-2 p-3 border-none color-nav-link text-xl font-semibold duration-500 navlink"
-                to="/about#cv">
-                <font-awesome-icon icon="fa-solid fa-file"
-                    class="fa-xl size-6 border-2 border-solid p-2 btn-border-color rounded-xl" />
-                <span class="text-xl mx-6 color-nav-link">{{ nav.cv }}</span>
             </RouterLink>
         </nav>
     </aside>

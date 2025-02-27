@@ -5,14 +5,16 @@ import App from './App.vue'
 import router from './router/router'
 import { library } from '@fortawesome/fontawesome-svg-core' // import the fontawesome core
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome' // import font awesome icon component
-import { faBars, faHeart, faHome, faPen, faMailBulk, faPerson, faContactCard, faFilter, faXmark, faCheck, faPlusCircle, faGlobe, faCopy, faCheckCircle, faFileDownload, faEye, faFilePdf, faFile, faSun, faMoon, faArrowDown, faArrowRight, faUser, faArrowUpRightFromSquare, faInfoCircle, faQuestion } from '@fortawesome/free-solid-svg-icons' // import specific icons (we can use 'fas' to call solid style icons)
-import { faSlack, faLinkedin, faGithub, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
+import { faBars, faHeart, faHome, faPen, faPerson, faContactCard, faFilter, faXmark, faCheck, faPlusCircle, faGlobe, faCopy, faCheckCircle, faFileDownload, faEye, faFilePdf, faFile, faSun, faMoon, faArrowDown, faArrowRight, faUser, faArrowUpRightFromSquare, faInfoCircle, faQuestion, faArrowUp, faCode } from '@fortawesome/free-solid-svg-icons' // import specific icons (we can use 'fas' to call solid style icons)
+import { faSlack, faLinkedin, faGithub, faFontAwesome, faVuejs, faReact, faBootstrap, faCss, faHtml5, faSquareJs, faAccessibleIcon, faNode, faNodeJs, faMarkdown, faGit } from '@fortawesome/free-brands-svg-icons'
 import ClickOutsideDirective from './directives/ClickOutsideDirective'; 
+import { createHead } from '@unhead/vue'
+library.add(faBars, faHeart, faHome, faPen, faPerson, faContactCard, faSlack, faLinkedin, faGithub, faFontAwesome, faFilter, faXmark, faCheck, faPlusCircle, faGlobe, faCopy, faCheckCircle, faFileDownload, faEye, faFilePdf, faFile, faSun, faMoon, faArrowDown, faArrowRight, faUser, faArrowUpRightFromSquare, faInfoCircle, faQuestion, faArrowUp, faVuejs, faReact, faBootstrap, faCss, faHtml5, faSquareJs, faAccessibleIcon, faNode, faNodeJs, faMarkdown, faGit, faCode ) // add icons to the library
 
-library.add(faBars, faHeart, faHome, faPen, faMailBulk, faPerson, faContactCard, faSlack, faLinkedin, faGithub, faFontAwesome, faFilter, faXmark, faCheck, faPlusCircle, faGlobe, faCopy, faCheckCircle, faFileDownload, faEye, faFilePdf, faFile, faSun, faMoon, faArrowDown, faArrowRight, faUser, faArrowUpRightFromSquare, faInfoCircle, faQuestion ) // add icons to the library
-
-const app = createApp(App)
+const app = createApp(App), head = createHead()
 // app.config.compilerOptions.isCustomElement = (tag) => ['ProjectFullSize'].includes(tag);
-app.component('font-awesome-icon', FontAwesomeIcon).directive('click-outside', ClickOutsideDirective)
-app.use(router)
-app.mount('#app')
+app.component('font-awesome-icon', FontAwesomeIcon)
+.directive('click-outside', ClickOutsideDirective)
+.use(router)
+.use(head)
+.mount('#app')

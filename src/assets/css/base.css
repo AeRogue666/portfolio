@@ -94,7 +94,7 @@
     --color-bg-article: var(--c-light-bg-article-1);
     --color-bg-article-2: var(--c-light-bg-article-2);
 }
-
+/* Colors */
 .yellow {
   color: var(--yellow);
 }
@@ -116,7 +116,94 @@
 .darkgreen {
   color: var(--darkgreen);
 }
-
+.rebeccapurple {
+  color: rebeccapurple;
+}
+.blueviolet {
+  color: blueviolet;
+}
+.victoria {
+  color: #563d7c;
+}
+.gray {
+  color: gray;
+}
+.cornflowerblue {
+  color: cornflowerblue;
+}
+.dodgerblue {
+  color: dodgerblue;
+}
+.mint {
+  color: #42B883;
+}
+.vivid-orange {
+  color: #f29111;
+}
+.denim {
+  color: #1d78c0;
+}
+.tia-maria {
+  color: #c9510c;
+}
+.portland-orange {
+  color: #ff5a36;
+}
+/* Border colors */
+.border-yellow {
+  border-color: var(--yellow);
+}
+.border-orange {
+  border-color: var(--orange);
+}
+.border-redorange {
+  border-color: var(--redorange);
+}
+.border-skyblue {
+  border-color: var(--skyblue);
+}
+.border-red {
+  border-color: var(--red);
+}
+.border-green {
+  border-color: var(--green);
+}
+.border-darkgreen {
+  border-color: var(--darkgreen);
+}
+.border-rebeccapurple {
+  border-color: rebeccapurple;
+}
+.border-blueviolet {
+  border-color: blueviolet;
+}
+.border-victoria {
+  border-color: #563d7c;
+}
+.border-gray {
+  border-color: gray;
+}
+.border-cornflowerblue {
+  border-color: cornflowerblue;
+}
+.border-dodgerblue {
+  border-color: dodgerblue;
+}
+.border-mint {
+  border-color: #42B883;
+}
+.border-vivid-orange {
+  border-color: #f29111;
+}
+.border-denim {
+  border-color: #1d78c0;
+}
+.border-tia-maria {
+  border-color: #c9510c;
+}
+.border-portland-orange {
+  border-color: #ff5a36;
+}
 /* 
 @media (prefers-color-scheme: dark) {
   :root {

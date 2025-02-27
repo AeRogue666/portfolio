@@ -68,6 +68,7 @@ $numBigStars: 200;
     height: 22.5rem;
     background-color: transparent;
     position: relative;
+    bottom: 1rem;
 
     div {
         position: absolute;

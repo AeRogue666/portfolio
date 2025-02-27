@@ -7,7 +7,10 @@ const router = createRouter({
       path: '/',
       name: 'Accueil',
       component: () => import('@/views/Home.vue'),
-      alias: '/home'
+      alias: ['/home', '/about', '/about-me'],
+      children: [
+        { path: '/#contact', component: () => import('@/components/HomeContactSection.vue') },
+      ]
     },
     {
       path: '/projets',
@@ -34,15 +37,10 @@ const router = createRouter({
       alias:'/pro/:id'
     },
     {
-      path: '/a-propos',
-      name: 'A propos',
-      component: () => import('@/views/About.vue'),
-      alias: ['/about', '/about-me']
-    },
-    {
-      path: '/contact',
-      name: 'Contact',
-      component: () => import('@/views/Contact.vue'),
+      path: '/cv',
+      name: 'CV',
+      component: () => import('@/views/CV.vue'),
+      alias: ['/cvplus']
     },
     {
       path: '/mentions-legales',
@@ -72,6 +70,23 @@ const router = createRouter({
       name: '404 Not Found',
       component: () => import('@/views/NotFound.vue'),
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if(to.hash == '#aboutcontainer') {
+      return { top: 945, behavior: 'smooth' }
+    } else if(to.hash == '#contact') {
+      return { el: to.hash, behavior: 'smooth'}
+    } else if(to.hash == '#webcv') {
+      switch (screen.orientation.type) {
+        case 'landscape-primary': return { top: 200, behavior: 'smooth'}
+        case 'landscape-secondary': return { top: 1159, behavior: 'smooth'}
+        case 'portrait-primary': return { top: 1159, behavior: 'smooth'}
+        case 'portrait-secondary': return { top: 200, behavior: 'smooth'}
+      }
+    }
+    if(savedPosition) {
+      return savedPosition
+    }
+  }
 })
 export default router

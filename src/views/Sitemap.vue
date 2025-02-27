@@ -1,6 +1,12 @@
 <script>
 import app from '@/App.vue';
-const { ApiURL, Language } = app.components;
+import { useSeoMeta } from '@unhead/vue';
+const { ApiURL, Language, PortfolioTitle, routerLink } = app.components;
+
+useSeoMeta({
+  title: `${routerLink[0].sitemap} - ${PortfolioTitle}`,
+  description:'',
+});
 </script>
 
 <template>
