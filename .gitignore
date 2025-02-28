@@ -27,6 +27,7 @@ coverage
 .env
 *.tsbuildinfo
 special_repository
-old_views
-.vite-ssg-temp
+old_views/*
+.vite-ssg-temp/*
 public/files/img/Project2
+Documentation_du_projet/*
