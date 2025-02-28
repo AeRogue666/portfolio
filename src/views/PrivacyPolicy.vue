@@ -6,10 +6,12 @@ const props = defineProps({
   Language: String,
   PortfolioTitle: String,
   routerLink: Array,
+  themeColor: String,
 });
 const { Language, PortfolioTitle, routerLink } = props;
 
 let cookiesProvider = reactive([]);
+
 cookiesList.filter(content => content.code === Language).map(content => { return content.data.map(cookie => { return cookiesProvider.push(cookie) }) });
 useSeoMeta({
   title: `${routerLink[0].privacy} - ${PortfolioTitle}`,

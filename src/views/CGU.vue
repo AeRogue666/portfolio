@@ -5,6 +5,7 @@ const props = defineProps({
   Language: String,
   PortfolioTitle: String,
   routerLink: Array,
+  themeColor: String,
 });
 const { Language, PortfolioTitle, routerLink } = props;
 
