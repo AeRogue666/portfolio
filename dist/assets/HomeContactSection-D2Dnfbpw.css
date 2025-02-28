@@ -1,0 +1,1 @@
+#contact{background-color:var(--color-bg-article)}.grid-notenough-2,.grid-notenough-3{grid-template-columns:repeat(1,minmax(0,1fr))}@media (orientation: landscape) or (min-width: 62.4rem){.grid-notenough-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-notenough-3{grid-template-columns:repeat(3,minmax(0,1fr))}}
