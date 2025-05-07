@@ -2,7 +2,7 @@
 
 Hello, I am AurelDev, a French Frontend Developer specialized in UX/UI and Accessibility, and like many devs, I wanted to make the world see my works. So, I created my own portfolio.
 
-This portfolio have been created with [Vue 3](https://vuejs.org), [Tailwind CSS](https//tailwindcss.com), [Font Awesome](https://fontawesome.com/icons) for the icons and some libraries available inside [package.json](https://github.com/AeRogue666/Portfolio/blob/main/package.json).
+This portfolio have been created with [Vue 3](https://vuejs.org), [Tailwind CSS](https://tailwindcss.com), [Font Awesome](https://fontawesome.com/icons) for the icons and some libraries available inside [package.json](https://github.com/AeRogue666/Portfolio/blob/main/package.json).
 
 <a href="https://aureldev.github.io/">
     <img src="https://img.shields.io/badge/My portfolio-skyblue?&style=for-the-badge&logo=github&logoColor=black" alt="Personal portfolio">
