@@ -18,7 +18,7 @@ This portfolio have been created with [Vue 3](https://vuejs.org), [Tailwind CSS]
 - 🎥 **Professionnal works page:** To see beautiful works
 - 📜 **Unique project page:** Every project need is own page
 - 📧 **Contact page:** We can talk about life here
-- 💪 **Curriculum Vitae page**: containing [a CV visualizer (available for PDF and WEB CV)](aureldev.github.io/portfolio/cv) and [a CV downloader (only PDF)](aureldev.github.io/portfolio/cv)
+- 💪 **Curriculum Vitae page**: containing [a CV visualizer (available for PDF and WEB CV)](https://aureldev.github.io/portfolio/cv) and [a CV downloader (only PDF)](https://aureldev.github.io/portfolio/cv)
 - 🎓 **Legal mentions page:** Because GPDR, I guess?
 - 📚 **Terms of Services page:** Only because I like writing things people don't gonna read
 - 📇 **Sitemap page:** Who need a sitemap?
