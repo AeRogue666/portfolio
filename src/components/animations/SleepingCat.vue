@@ -33,7 +33,7 @@
 </template>
 
 <style lang="scss">
-.dark {
+[data-theme="dark"] {
     --color-bg-window: #2c2c2c;
     --color-outline-window: #2d2624;
     --color-border-window: #2ca6d2;
@@ -51,7 +51,7 @@
     --color-cabinet: #a5612a;
 }
 
-.light {
+[data-theme="light"] {
     --color-bg-window: #2c2c2c;
     --color-outline-window: #85706a;
     --color-border-window: #cad2d4;

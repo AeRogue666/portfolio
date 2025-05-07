@@ -37,7 +37,7 @@
   --c-dark-bg-article-2: var(--eerie-black--shade-2);
 }
 /* Default mode */
-:root {
+:root, [data-theme="light"] {
   --color-background: var(--bg-light);
   --color-heading: var(--bg-light-header);
   --color-title: var(--c-light-title);
@@ -57,7 +57,7 @@
   --element-size: 4rem;
 }
 
-.dark {
+[data-theme="dark"] {
   --color-background: var(--bg-dark);
   --color-heading: var(--bg-dark-header);
   --color-title: var(--c-dark-title);
@@ -74,25 +74,6 @@
   --color-text-link-hover: var(--c-dark-text-link-hover);
   --color-bg-article: var(--c-dark-bg-article-1);
   --color-bg-article-2: var(--c-dark-bg-article-2);
-}
-
-.light {
-    --color-background: var(--bg-light);
-    --color-heading: var(--bg-light-header);
-    --color-title: var(--c-light-title);
-    --color-subtitle: var(--c-light-subtitle);
-    --color-subtitle-2: var(--c-light-subtitle-2);
-    --color-text: var(--c-light-text);
-    --color-nav-link: var(--c-light-nav-link);
-    --color-nav-link-hover: var(--c-light-nav-link-hover);
-    --color-btn: var(--c-light-btn);
-    --color-btn-hover: var(--c-light-btn-hover);
-    --color-btn-border: var(--c-light-btn-border);
-    --color-date: var(--c-light-date);
-    --color-text-link: var(--c-light-text-link);
-    --color-text-link-hover: var(--c-light-text-link-hover);
-    --color-bg-article: var(--c-light-bg-article-1);
-    --color-bg-article-2: var(--c-light-bg-article-2);
 }
 /* Colors */
 .yellow {

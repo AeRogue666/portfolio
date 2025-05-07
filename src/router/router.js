@@ -9,7 +9,7 @@ const router = createRouter({
       component: () => import('@/views/Home.vue'),
       alias: ['/home', '/about', '/about-me'],
       children: [
-        { path: '/#contact', component: () => import('@/components/HomeContactSection.vue') },
+        { path: '/#contact', component: () => import('@/components/HomePage/ContactSection.vue') },
       ]
     },
     {
@@ -21,7 +21,7 @@ const router = createRouter({
     {
       path:'/projets/:id',
       name:'Un projet personnel',
-      component: () => import('@/views/ProjectArticleModal.vue'),
+      component: () => import('@/views/Article.vue'),
       alias:'/projects/:id'
     },
     {
@@ -33,7 +33,7 @@ const router = createRouter({
     {
       path:'/works/:id',
       name:'Un projet professionnel',
-      component: () => import('@/views/ProjectArticleModal.vue'),
+      component: () => import('@/views/Article.vue'),
       alias:'/pro/:id'
     },
     {

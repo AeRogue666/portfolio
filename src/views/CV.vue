@@ -2,10 +2,10 @@
 import { onMounted, reactive, ref } from "vue";
 import { cvList } from "@/assets/js/ProjectArraysList";
 import { useSeoMeta } from "@unhead/vue";
-import CVFileSelector from "@/components/CVFileSelector.vue";
-import AboutPortraitAnimation from "@/components/CVPortraitAnimation.vue";
-import CVWebDisplayer from "@/components/CVWebDisplayer.vue";
-import AboutPdfReaderModal from "@/components/CVPdfReader.vue";
+import CVFileSelector from "@/components/CV/FilesMenuSelector.vue";
+import AboutPortraitAnimation from "@/components/animations/SelfPortrait.vue";
+import CVWebDisplayer from "@/components/CV/WebCVDisplayer.vue";
+import AboutPdfReaderModal from "@/components/CV/PDFReader.vue";
 
 const props = defineProps({
   Language: String,
@@ -19,7 +19,6 @@ const pdfID = ref(""), aboutContent = reactive([]), cvContent = reactive([]),
 
 const getPDFID = (value) => {
   pdfID.value = value;
-  console.log(value, pdfID.value)
 },
   filterArrayValues = (array, final, cv) => {
     array.filter(content => content.code == (languageCode.value || Language)).map(content => content.data.map(item => {
@@ -35,7 +34,6 @@ const getPDFID = (value) => {
   },
   openSelectedComponent = (value) => {
     openComponent.value = value;
-    console.log(value, openComponent.value)
     // event.stopPropagation();
   },
   changeCloseDocument = () => {
@@ -101,7 +99,7 @@ onMounted(() => {
                 </p>
               </section>
             </div>
-            <div v-if="openComponent" id="cv" class="flex flex-col items-center w-full h-full">
+            <div v-if="openComponent" id="cv" class="flex flex-col items-center w-full h-full border rounded-lg">
               <button id="closecvbtn" @click="openComponent = ''"
                 class="flex flex-row justify-center items-center w-auto h-auto border border-solid rounded-lg px-2 m-2 red">
                 <font-awesome-icon icon="fa-solid fa-xmark" class="fa-xl p-2"></font-awesome-icon>

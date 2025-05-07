@@ -1,29 +1,32 @@
 <script setup>
-import { onMounted, ref, watchEffect } from 'vue';
+import { getStorage, saveStorage } from '@/assets/js/storageFunctions.js';
+import { useThemeStore } from '@/stores/themeStore.js';
+import { storeToRefs } from 'pinia';
+import { onMounted, ref, reactive, watchEffect } from 'vue';
 
-const props = defineProps({
-    themeContent: Array,
-    themeColor: String,
-}),
-    emits = defineEmits(['update:themecolor']);
-const { themeColor } = props;
-const userTheme = ref(''), userThemeLabel = ref('Le site passera au thème foncé - Thème actuel : clair'), userThemeIcon = ref('moon');
+const themeContent = reactive([{ id: 'light', label: 'Light mode', icon: 'sun' },{ id: 'dark', label: 'Dark mode', icon: 'moon' }]);
+
+const themeStore = useThemeStore();
+const { currentTheme } = storeToRefs(themeStore);
+
+const userTheme = ref(currentTheme), userThemeLabel = ref('Light mode'), userThemeIcon = ref('sun');
 
 const setTheme = (theme) => {
-    emits('update:themecolor', theme);
-    localStorage.setItem('user-theme', theme);
+    saveStorage('theme', theme);
     userTheme.value = theme;
-    // document.documentElement.className = theme;
+    themeStore.setTheme(theme);
 },
     toggleTheme = () => {
         if (userTheme.value === 'light') {
-            setTheme('dark'),
-                userThemeIcon.value = 'sun'
+            setTheme('dark');
         } else {
-            setTheme('light'),
-                userThemeIcon.value = 'moon'
+            setTheme('light');
         }
-        if (userTheme.value) props.themeContent.filter(value => value.id == userTheme.value).map(content => userThemeLabel.value = content.content)
+        if (userTheme.value) {
+            themeContent
+                .filter((value) => value.id == userTheme.value)
+                .map((content) => { return userThemeLabel.value = content.label, userThemeIcon.value = content.icon })
+        }
     },
     getMediaPreference = () => {
         const hasDarkPreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -34,7 +37,7 @@ const setTheme = (theme) => {
         }
     },
     getTheme = () => {
-        return localStorage.getItem('user-theme')
+        return getStorage('theme')
     };
 
 onMounted(() => {
@@ -43,8 +46,9 @@ onMounted(() => {
 });
 
 watchEffect(() => {
-    if (!userTheme.value) setTheme(themeColor);
+    if (!userTheme.value) setTheme('light');
     else setTheme(userTheme.value);
+    document.documentElement.setAttribute('data-theme', userTheme.value);
 });
 /* <label for="checkbox" :aria-label="userThemeLabel" class="switch-label m-2"
         :style="[width > 1000 ? `width: ${width / 30 / 16}rem` : '']">
@@ -68,13 +72,19 @@ watchEffect(() => {
 </script>
 
 <template>
-    <button @click="toggleTheme" type="button"
-        class="flex flex-row justify-center items-center border-none cursor-pointer w-auto h-auto theme-toggle"
-        :class="[userTheme == 'light' ? 'night' : 'day']">
-        <span class="sr-only">{{ userThemeLabel }}</span>
-        <font-awesome-icon :id="userThemeIcon" :icon="['fas', userThemeIcon]" width="32" height="32"
-            class="w-6 h-6"></font-awesome-icon>
-    </button>
+    <label for="checkbox" :aria-label="userThemeLabel" class="switch-label m-2">
+        <input @change="toggleTheme" id="checkbox" name="checkboxtheme" type="checkbox" class="switch-checkbox" />
+        <div class="flex flex-row justify-center items-center switch-toggle" :class="[
+            { 'switch-toggle-checked': userTheme === 'dark' },
+            { 'switch-toggle-unchecked': userTheme === 'light' },
+        ]">
+            <span role="img" class="flex flex-col justify-center items-center w-full h-full" :style="[
+                userTheme === 'dark' ? 'color: white;' : 'color: black;',
+            ]">
+                <font-awesome-icon :icon="['fas', userThemeIcon]"></font-awesome-icon>
+            </span>
+        </div>
+    </label>
 </template>
 
 <style lang="css" scoped>
@@ -99,11 +109,12 @@ watchEffect(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /*  */
     width: 3rem;
-    /* width: calc(var(--element-size) + 2rem); */
-    /* height: calc(var(--element-size) * 0.35); */
+    /* width: calc(var(--element-size));  */
+    /* height: calc(var(--element-size) * 0.37); */
     /* padding: calc(var(--element-size) * 0.1); */
-    /* border: calc(var(--element-size) * 0.025) solid var(--color-btn-border); */
+    /* border: calc(var(--element-size) * 0.025) solid gray; */
     /* border-radius: 1rem; */
     /* font-size: calc(var(--element-size) * 0.3); */
     cursor: pointer;
@@ -123,14 +134,12 @@ watchEffect(() => {
     transition: transform 0.3s ease, background-color 0.5s ease;
 }
 
-.switch-toggle-checked,
-.night {
+.switch-toggle-checked {
     /* transform: translateX(calc(var(--element-size) * 0.5)) !important; */
     box-shadow: 0px 0px 5px 5px var(--color-btn);
 }
 
-.switch-toggle-unchecked,
-.day {
+.switch-toggle-unchecked {
     /* transform: translateX(calc(var(--element-size) * -0.02)) !important; */
     box-shadow: 0px 0px 5px 5px orange;
 }

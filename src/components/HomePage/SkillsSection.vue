@@ -48,7 +48,7 @@ onMounted(() => {
                 <p class="text-2xl font-semibold">
                     <span :class="[props.themeColor == 'light' ? 'text-blue-600' : 'text-blue-500']">{{
                         project.projectNumber }}</span>
-                    <span class="text-white">+</span>
+                    <span>+</span>
                 </p>
             </div>
         </div>

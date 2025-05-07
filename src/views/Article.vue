@@ -9,8 +9,8 @@ import { projectsList, worksList, tagsColorList, imagesList, galleryList } from 
 import { Carousel, Navigation, Pagination, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import { useSeoMeta } from '@unhead/vue';
-import ProjectArticleModalAllTags from '@/components/ProjectArticleModalAllTags.vue';
-import ProjectArticleModalMdRender from '@/components/ProjectArticleModalContentRender.vue';
+import ProjectArticleModalAllTags from '@/components/Article/TagsListDisplayer.vue';
+import ProjectArticleModalMdRender from '@/components/Article/MarkdownDisplayer.vue';
 dayjs.extend(customParseFormat), dayjs.extend(updateLocale); // Le site est en français par défaut
 
 const props = defineProps({
@@ -32,9 +32,9 @@ const filterArraysList = (array, final, tags) => {
                 tempImg2 = [...tempImg1];
                 tempImg1 = reactive([]);
                 if ((route.path == '/projects/' + projectID.value || route.path == '/projets/' + projectID.value)) {
-                    tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Project${content.id}/${value.url}.png`, description: value.description }));
+                    tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Projects/${content.images_folder}/${value.url}.png`, description: value.description }));
                 } else if ((route.path == '/works/' + projectID.value || route.path == '/pro/' + projectID.value) && isValidHttpUrl(img.url) == false) {
-                    tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Work${content.id}/${value.url}.png`, description: value.description }));
+                    tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Works/${content.images_folder}/${value.url}.png`, description: value.description }));
                 }
             }), final.push({
                 id: content.id,

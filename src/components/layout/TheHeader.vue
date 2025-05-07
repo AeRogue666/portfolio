@@ -1,21 +1,22 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import AppBurgerNav from "./HeaderBurgerNav.vue";
-import HeaderThemeSelector from './HeaderThemeSelector.vue';
-import HeaderSelectLanguages from './HeaderSelectLanguages.vue';
+import AppBurgerNav from "./components/ThePhoneNavbar.vue";
+import TheThemeSwitcher from './components/TheThemeSwitcher.vue';
+import TheLanguageSelector from './components/TheLanguagesSelector.vue';
 import { onMounted, ref } from 'vue';
-import { useWindowSize } from './FunctionWindowResize.vue';
+import { useWindowSize } from '@/components/functions/FunctionWindowResize.vue';
 
 const props = defineProps({
     Language: String,
     routerLinkContent: Array,
-    themeColor: String,
-});
+}),
+    emits = defineEmits(['update:language'])
 
 const { routerLinkContent } = props,
-    emits = defineEmits(['update:themecolor', 'update:language']);
-const isPhoneNavbarOpen = ref(false), { width } = useWindowSize(),
-    scrollTimer = ref(0), scrollY = ref(0);
+    { width } = useWindowSize(),
+    isPhoneNavbarOpen = ref(false),
+    scrollTimer = ref(0),
+    scrollY = ref(0);
 
 const openPhoneNavbar = (event) => {
     isPhoneNavbarOpen.value = !isPhoneNavbarOpen.value;
@@ -39,14 +40,12 @@ const openPhoneNavbar = (event) => {
     },
     setLanguage = (value) => {
         emits('update:language', value)
-    },
-    setTheme = (value) => {
-        emits('update:themecolor', value)
     };
 
 onMounted(() => {
     window.addEventListener('scroll', handleScroll);
 });
+
 </script>
 
 <template>
@@ -54,10 +53,10 @@ onMounted(() => {
         <section v-for="link of routerLinkContent" id="header-section" :class="[scrollY > 24 ? 'fixed' : 'relative']"
             class="flex flex-row justify-start items-center w-full h-auto bg-inherit">
             <div class="flex flex-row justify-center items-center w-full">
-                <nav>
-                    <a tabindex="0" @click="toTheMain"
-                        class="sr-only focus:not-sr-only focus:outline outline-inherit outline-offset-1">{{
-                            link.maincontent }}</a>
+                <nav tabindex="-1">
+                    <a ref="skipLink" @click="toTheMain"
+                        class="sr-only focus:not-sr-only focus:outline outline-inherit outline-offset-1">
+                        {{ link.maincontent }}</a>
                 </nav>
                 <div class="flex flex-col items-center w-auto h-auto px-4 text-center" id="navbar-mobile">
                     <button @click="openPhoneNavbar" id="navbarbtnselector" type="button"
@@ -75,7 +74,8 @@ onMounted(() => {
                     <p name="logo" class="flex flex-col items-center w-full h-full min-w-60 my-4">
                         <span class="text-5xl font-semibold color-nav-link"
                             :style="[width >= 1000 ? `font-size: clamp(3rem, 3.7vw, 5rem);` : '']">AurelDev</span>
-                        <span>{{ link.made }}
+                        <span>
+                            {{ link.made }}
                             <font-awesome-icon icon="fa-solid fa-heart"
                                 :class="[props.themeColor == 'light' ? 'text-blue-600' : 'text-blue-500']"
                                 :title="link.love" /></span>
@@ -86,22 +86,26 @@ onMounted(() => {
                 <nav id="navbar-desktop" class="flex flex-row w-full h-full"
                     :style="[width >= 1000 ? `font-size: clamp(1.1rem, 3.7vw + 1rem, 1.25rem);` : '']"
                     :aria-label="link.navlinks">
-                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/">{{ link.home }}
+                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/">
+                        {{ link.home }}
                     </RouterLink>
-                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/projets">{{ link.projects }}
+                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/projets">
+                        {{ link.projects }}
                     </RouterLink>
-                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/works">{{ link.works }}
+                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/works">
+                        {{ link.works }}
                     </RouterLink>
-                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/#contact">{{ link.contact }}
+                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/#contact">
+                        {{ link.contact }}
                     </RouterLink>
-                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/cv">{{ link.about }}
+                    <RouterLink class="block p-2 color-nav-link font-semibold duration-500" to="/cv">
+                        {{ link.about }}
                     </RouterLink>
                 </nav>
             </div>
             <div class="flex flex-row justify-center items-center w-full gap-3">
-                <HeaderThemeSelector :theme-content="link.themecontent" :theme-color="props.themeColor"
-                    @update:themecolor="setTheme" />
-                <HeaderSelectLanguages :-language-code="props.Language" @update:languagecode="setLanguage" />
+                <TheThemeSwitcher />
+                <TheLanguageSelector :-language-code="props.Language" @update:languagecode="setLanguage" />
             </div>
         </section>
     </header>

@@ -1,7 +1,7 @@
 <script setup>
 import { skillsITList } from '@/assets/js/ProjectArraysList';
 import { onMounted, reactive, ref } from 'vue';
-import HomeCatAnimation from './HomeCatAnimation.vue';
+import HomeCatAnimation from '@/components/animations/SleepingCat.vue';
 
 const props = defineProps({
     Language: String,
@@ -68,10 +68,6 @@ onMounted(() => {
 @media (orientation: landscape) or (min-width: 63rem) {
     #aboutcontent {
         flex-direction: row;
-    }
-
-    #jobscontainer ul {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 </style>

@@ -7,8 +7,8 @@ import updateLocale from "dayjs/plugin/updateLocale";
 import { computed, onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import { imagesList, tagsColorList } from "@/assets/js/ProjectArraysList";
-import { useWindowSize } from "./FunctionWindowResize.vue";
-import HomeEmptyAnimation from "./HomeEmptyAnimation.vue";
+import { useWindowSize } from "@/components/functions/FunctionWindowResize.vue";
+import HomeEmptyAnimation from "@/components/animations/SeatingCat.vue";
 dayjs.extend(customParseFormat), dayjs.extend(updateLocale); // Le site est en français par défaut
 
 const route = useRoute();
@@ -36,9 +36,9 @@ const getArticleContent = () => {
                 tempImg2 = reactive([...tempImg1]);
                 if (isValidHttpUrl(item.url) == false && typeof item == 'number') {
                     if (route.path === '/projects' || route.path === '/projets') {
-                        tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Project${content.id}/${value.url}.png`, description: value.description }))
+                        tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Projects/${content.images_folder}/${value.url}.png`, description: value.description }))
                     } else if (route.path === '/works' || route.path === '/pro') {
-                        tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Work${content.id}/${value.url}.png`, description: value.description }))
+                        tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Works/${content.images_folder}/${value.url}.png`, description: value.description }))
                     }
                 } else {
                     img.push({
@@ -123,7 +123,7 @@ onMounted(() => {
         class="flex flex-col items-center w-auto h-full m-1 p-0 min-w-80 min-h-45 max-w-full color-bg-article border border-solid color-border-article rounded-xl"
         alt="Cliquez directement sur l'article pour y accéder">
         <figure v-for="image of article.images" :title="image.title"
-            class="flex flex-col justify-center items-center w-full h-full" aria-hidden="false">
+            class="flex flex-col justify-center items-center w-full h-full figure" aria-hidden="false">
             <img :id="image.id" :src="image.url" alt="" class="block w-full h-full rounded-t-xl" width="630" height="311">
         </figure>
         <div class="flex flex-col items-center h-full mx-2 pt-4">
@@ -195,4 +195,10 @@ onMounted(() => {
     </div>
 </template>
 
-<style lang="css"></style>
+<style lang="css">
+@media (orientation:landscape) or (min-width: 63rem) {
+    .figure {
+        max-height: 228px;
+    }
+}
+</style>

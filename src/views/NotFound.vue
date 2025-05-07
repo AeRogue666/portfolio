@@ -3,9 +3,9 @@ import { onMounted, reactive, ref } from "vue";
 import anime from "animejs/lib/anime.es.js";
 import { notFoundContentList } from "@/assets/js/ProjectArraysList";
 import { useSeoMeta } from "@unhead/vue";
-import NotFoundFireplaceAnimation from "@/components/NotFoundFireplaceAnimation.vue";
-import NotFoundCabinetAnimation from "@/components/NotFoundCabinetAnimation.vue";
-import NotFoundVanishingCabinetAnimation from "@/components/NotFoundVanishingCabinetAnimation.vue";
+import NotFoundFireplaceAnimation from "@/components/animations/HarryPotterFireplace.vue";
+import NotFoundCabinetAnimation from "@/components/animations/HarryPotterCabinet.vue";
+import NotFoundVanishingCabinetAnimation from "@/components/animations/HarryPotterVanishingCabinet.vue";
 
 const props = defineProps({
   Language: String,

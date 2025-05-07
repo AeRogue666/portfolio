@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import AppNoScript from './AppNoScript.vue';
-import AppButtonScrollToTop from './AppButtonScrollToTop.vue';
+import AppNoScript from './components/NoScript.vue';
+import AppButtonScrollToTop from './components/ButtonScrollToTop.vue';
 import { computed } from 'vue';
 
 const props = defineProps({

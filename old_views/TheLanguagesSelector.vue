@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive, watchEffect } from "vue";
 import { LanguagesList } from "@/assets/js/ProjectArraysList";
-import { useWindowSize } from "./FunctionWindowResize.vue";
+import { useWindowSize } from "@/components/functions/FunctionWindowResize.vue";
 const props = defineProps({
     LanguageCode: String,
 }),

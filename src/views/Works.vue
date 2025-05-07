@@ -4,7 +4,7 @@ import "dayjs/locale/fr";
 import "dayjs/locale/en-gb";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import updateLocale from "dayjs/plugin/updateLocale";
-import ProjectArticles from "@/components/ProjectArticles.vue";
+import ProjectArticles from "@/components/ArticlesList/ArticlesList.vue";
 import { worksList } from "@/assets/js/ProjectArraysList";
 import { ref, reactive, onMounted } from "vue";
 import { useSeoMeta } from "@unhead/vue";
