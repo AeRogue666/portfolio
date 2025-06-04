@@ -30,6 +30,7 @@ const setTheme = (theme) => {
     },
     getMediaPreference = () => {
         const hasDarkPreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        console.log(hasDarkPreference);
         if (hasDarkPreference) {
             return 'dark'
         } else {
@@ -41,7 +42,7 @@ const setTheme = (theme) => {
     };
 
 onMounted(() => {
-    const initUserTheme = getTheme() || getMediaPreference();
+    const initUserTheme = getMediaPreference() || getTheme();
     setTheme(initUserTheme);
 });
 

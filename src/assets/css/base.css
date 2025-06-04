@@ -58,7 +58,6 @@
   --color-bg-article-2: var(--c-light-bg-article-2), var(--c-dark-bg-article-2);
 }
 
-/*
 [data-theme="light"] {
   --color-background: var(--bg-light);
   --color-heading: var(--bg-light-header);
@@ -95,7 +94,7 @@
   --color-text-link-hover: var(--c-dark-text-link-hover);
   --color-bg-article: var(--c-dark-bg-article-1);
   --color-bg-article-2: var(--c-dark-bg-article-2);
-} */
+}
 
 /* Colors */
 .yellow {
@@ -248,5 +247,4 @@
     --color-bg-article: var(--c-light-bg-article-1);
     --color-bg-article-2: var(--c-light-bg-article-2);
   }
-}
-*/
+} */

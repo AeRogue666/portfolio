@@ -55,11 +55,27 @@
   --c-dark-text-link-hover: var(--pacific-cyan);
   --c-dark-bg-article-1: var(--eerie-black--shade-1);
   --c-dark-bg-article-2: var(--eerie-black--shade-2);
+  --element-size: 4rem;
+  color-scheme: light dark;
+  --color-background: var(--bg-light), var(--bg-dark);
+  --color-heading: var(--bg-light-header), var(--bg-dark-header);
+  --color-title: var(--c-light-title), var(--c-dark-title);
+  --color-subtitle: var(--c-light-subtitle), var(--c-dark-subtitle);
+  --color-subtitle-2: var(--c-light-subtitle-2), var(--c-dark-subtitle-2);
+  --color-text: var(--c-light-text), var(--c-dark-text);
+  --color-nav-link: var(--c-light-nav-link), var(--c-dark-nav-link);
+  --color-nav-link-hover: var(--c-light-nav-link-hover), var(--c-dark-nav-link-hover);
+  --color-btn: var(--c-light-btn), var(--c-dark-btn);
+  --color-btn-hover: var(--c-light-btn-hover), var(--c-dark-btn-hover);
+  --color-btn-border: var(--c-light-btn-border), var(--c-dark-btn-border);
+  --color-date: var(--c-light-date), var(--c-dark-date);
+  --color-text-link: var(--c-light-text-link), var(--c-dark-text-link);
+  --color-text-link-hover: var(--c-light-text-link-hover), var(--c-dark-text-link-hover);
+  --color-bg-article: var(--c-light-bg-article-1), var(--c-dark-bg-article-1);
+  --color-bg-article-2: var(--c-light-bg-article-2), var(--c-dark-bg-article-2);
 }
 
-/* Default mode */
-
-:root, [data-theme="light"] {
+[data-theme="light"] {
   --color-background: var(--bg-light);
   --color-heading: var(--bg-light-header);
   --color-title: var(--c-light-title);
@@ -76,7 +92,6 @@
   --color-text-link-hover: var(--c-light-text-link-hover);
   --color-bg-article: var(--c-light-bg-article-1);
   --color-bg-article-2: var(--c-light-bg-article-2);
-  --element-size: 4rem;
 }
 
 [data-theme="dark"] {
@@ -287,8 +302,7 @@
     --color-bg-article: var(--c-light-bg-article-1);
     --color-bg-article-2: var(--c-light-bg-article-2);
   }
-}
-*/
+} */
 
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
