@@ -24,6 +24,31 @@ This portfolio have been created with [Vue 3](https://vuejs.org), [Tailwind CSS]
 - 📇 **Sitemap page:** Who need a sitemap?
 - 🚳 **404 Not found page:** Your friend in the darkness
 
+## Local Development
+
+1. Clone the repository (or fork)
+`git clone https://github.com/AeRogue666/TasksTimer`
+
+2. Install dependencies
+`npm install`
+
+3. Start the project
+`npm run dev`
+
+## Project scripts
+
+1. To build the project (type-checking + build)
+`npm run build`
+
+2. To preview the project
+`npm run preview`
+
+3. To run TailwindCSS 3.4
+`npm run css`
+
+4. For lazzy ones (Build + Add + Commit)
+`npm run git` & `npm run postgit`
+
 ## 📄 License
 
 [MIT License](https://github.com/AeRogue666/Portfolio/blob/main/LICENSE) © 2025-PRESENT [AurelDev](https://github.com/AeRogue666)
