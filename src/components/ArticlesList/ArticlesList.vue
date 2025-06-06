@@ -36,9 +36,9 @@ const getArticleContent = () => {
                 tempImg2 = reactive([...tempImg1]);
                 if (isValidHttpUrl(item.url) == false && typeof item == 'number') {
                     if (route.path === '/projects' || route.path === '/projets') {
-                        tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Projects/${content.images_folder}/${value.url}.png`, description: value.description }))
+                        tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Projects/${content.images_folder}/${value.url}`, description: value.description }))
                     } else if (route.path === '/works' || route.path === '/pro') {
-                        tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Works/${content.images_folder}/${value.url}.png`, description: value.description }))
+                        tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Works/${content.images_folder}/${value.url}`, description: value.description }))
                     }
                 } else {
                     img.push({
@@ -124,7 +124,10 @@ onMounted(() => {
         alt="Cliquez directement sur l'article pour y accéder">
         <figure v-for="image of article.images" :title="image.title"
             class="flex flex-col justify-center items-center w-full h-full figure" aria-hidden="false">
-            <img :id="image.id" :src="image.url" alt="" class="block w-full h-full rounded-t-xl" width="630" height="311">
+            <picture class="w-full h-full rounded-t-xl">
+                <source media="(max-width: 799px)" :srcset="`${image.url}_480w.png`">
+                <img :id="image.id" :src="`${image.url}.png`" :alt="image.description" class="w-full h-full rounded-t-xl">
+            </picture>
         </figure>
         <div class="flex flex-col items-center h-full mx-2 pt-4">
             <h2 class="w-full h-auto min-h-12 max-h-36 my-2 text-start text-2xl line-clamp-2 text-ellipsis">

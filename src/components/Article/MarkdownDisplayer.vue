@@ -18,4 +18,4 @@ defineProps({
     <div v-html="md.render(source)"></div>
 </template>
 
-<style></style>
+<style scoped></style>

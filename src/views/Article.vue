@@ -32,9 +32,9 @@ const filterArraysList = (array, final, tags) => {
                 tempImg2 = [...tempImg1];
                 tempImg1 = reactive([]);
                 if ((route.path == '/projects/' + projectID.value || route.path == '/projets/' + projectID.value)) {
-                    tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Projects/${content.images_folder}/${value.url}.png`, description: value.description }));
+                    tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Projects/${content.images_folder}/${value.url}`, description: value.description }));
                 } else if ((route.path == '/works/' + projectID.value || route.path == '/pro/' + projectID.value) && isValidHttpUrl(img.url) == false) {
-                    tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Works/${content.images_folder}/${value.url}.png`, description: value.description }));
+                    tempImg2.map(value => img.push({ id: value.id, title: value.title, url: `/portfolio/files/img/Works/${content.images_folder}/${value.url}`, description: value.description }));
                 }
             }), final.push({
                 id: content.id,
@@ -136,7 +136,10 @@ onMounted(() => {
                     <Slide v-for="slide of article.images" :key="slide.id">
                         <figure class="flex flex-col justify-center items-center carousel__item" rel="preload"
                             aria-hidden="false">
-                            <img :id="slide.id" :src="slide.url" :alt="slide.description" width="100%">
+                            <picture>
+                                <source media="(max-width: 799px)" :srcset="`${slide.url}_480w.png`">
+                                <img :id="slide.id" :src="`${slide.url}.png`" :alt="slide.description" width="100%">
+                            </picture>
                             <figcaption class="flex flex-col items-start">
                                 <span class="text-base">{{ slide.description }}</span>
                                 <span class="text-xs">{{ slide.title }}</span>
@@ -163,9 +166,7 @@ onMounted(() => {
                         <p v-if="article.employer" class="ml-2">{{ article.by }} <span>{{ article.employer }}</span></p>
                     </div>
                     <div class="py-2">
-                        <div id="articleContent" class="text-xl text-left" v-if="article.content.length !== 0">
-                            <ProjectArticleModalMdRender :source="article.content" />
-                        </div>
+                        <ProjectArticleModalMdRender v-if="article.content.length !== 0" id="articleContent" class="text-xl text-left" :source="article.content" />
                         <div v-if="errors.length !== 0 && !article.content">
                             <p class="text-xl text-left">{{ errors.message }}</p>
                             <a class="text-base text-left" :href="errors.url">{{ errors.url }}</a>
@@ -219,13 +220,6 @@ onMounted(() => {
     border-radius: 10px;
 }
 
-@media (min-width: 1000px),
-(orientation: landscape) {
-    .article-one {
-        width: 95%;
-    }
-}
-
 /* Carousel */
 .carousel__item {
     min-height: 200px;
@@ -261,13 +255,22 @@ onMounted(() => {
     background-color: rgb(var(--color-nav-link));
 }
 
+/* Markdown */
+#articleContent pre {
+    white-space: break-spaces;
+}
+
 /* Tags */
 .projectsize {
     flex-direction: column;
     align-items: center;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 63rem) or (orientation: landscape) {
+    .article-one {
+        width: 95%;
+    }
+
     .projectsize {
         flex-direction: row;
         align-items: flex-start;
