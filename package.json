@@ -17,26 +17,26 @@
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
-    "@unhead/vue": "^2.0.19",
+    "@unhead/vue": "^2.1.1",
     "animejs": "^4.2.2",
     "dayjs": "^1.11.19",
     "markdown-it": "^14.1.0",
     "pinia": "^3.0.4",
-    "vue": "^3.5.25",
+    "vue": "^3.5.26",
     "vue-router": "^4.6.4",
-    "vue3-carousel": "^0.16.0"
+    "vue3-carousel": "^0.17.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.10",
     "@types/animejs": "^3.1.13",
-    "@unhead/addons": "^2.0.19",
-    "@vitejs/plugin-vue": "^6.0.2",
-    "autoprefixer": "^10.4.22",
+    "@unhead/addons": "^2.1.1",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "autoprefixer": "^10.4.23",
     "postcss": "^8.5.3",
     "postcss-import": "^16.1.0",
-    "sass": "^1.96.0",
+    "sass": "^1.97.1",
     "sass-loader": "^16.0.5",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.1.18",
     "vite": "^7.3.0"
   }
 }
