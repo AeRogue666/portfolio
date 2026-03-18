@@ -22,7 +22,7 @@
     "dayjs": "^1.11.19",
     "markdown-it": "^14.1.0",
     "pinia": "^3.0.4",
-    "vue": "^3.5.28",
+    "vue": "^3.5.30",
     "vue-router": "^4.6.4",
     "vue3-carousel": "^0.17.0"
   },
@@ -31,7 +31,7 @@
     "@types/animejs": "^3.1.13",
     "@unhead/addons": "^2.1.4",
     "@vitejs/plugin-vue": "^6.0.4",
-    "autoprefixer": "^10.4.24",
+    "autoprefixer": "^10.4.27",
     "postcss": "^8.5.3",
     "postcss-import": "^16.1.0",
     "sass": "^1.97.3",
